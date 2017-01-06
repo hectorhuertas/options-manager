@@ -1,9 +1,11 @@
-function makeRelationshipSet() {
+var RuleSet = require('./RuleSet')
 
+function makeRelationshipSet() {
+  return RuleSet.new()
 }
 
-function dependsOn() {
-
+function dependsOn(depends, on, ruleset) {
+  ruleset.AddDep(depends, on)
 }
 
 function areExclusive() {

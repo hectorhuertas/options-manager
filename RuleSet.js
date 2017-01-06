@@ -2,23 +2,26 @@ var RuleSetPrototype = {
   AddDep: function (depends, on) {
     this.dependencies[depends] = on
   },
+
   AddConflict: function (opA, opB) {
     this.conflicts.push({opA: opA, opB: opB})
   },
+
   IsCoherent: function () {
     return !this.conflicts.some( (conflict) => {
-      console.log('conflict:',conflict);
-      return this.IsADependency(conflict.opA, conflict.opB)
+      return this._IsADependency(conflict.opA, conflict.opB, [])
     })
   },
-  IsADependency: function (opA, opB) {
-    console.log('\n');
-    console.log('checking', opA, 'and', opB);
+
+  _IsADependency: function (opA, opB, checked) {
     var dependency = this.dependencies[opA]
-    console.log(opA, 'dependency is ',dependency);
+
     if (dependency === undefined) return false
     if (dependency === opB) return true
-    return this.IsADependency(dependency, opB)
+    if (checked.indexOf(dependency) !== -1) return false
+
+    checked.push(dependency)
+    return this._IsADependency(dependency, opB, checked)
   }
 }
 

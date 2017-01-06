@@ -1,7 +1,6 @@
 var RuleSet = require('./RuleSet')
 
 function makeRelationshipSet() {
-  // console.log(RuleSet.new().__proto__);
   return RuleSet.new()
 }
 

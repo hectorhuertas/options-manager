@@ -7,25 +7,36 @@ var checkRelationships  = optionsManager.checkRelationships
 
 var s, selected;
 
+console.log('\n\n');
+console.log('STARING TEST');
+
 s = makeRelationshipSet();
 s = dependsOn('a', 'a', s);
 console.assert(checkRelationships(s));
+
+console.log('TEST 1 OK');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
 s = dependsOn('b', 'a', s);
 console.assert(checkRelationships(s));
 
+console.log('TEST 2 OK');
+
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
 s = areExclusive('a', 'b', s);
 console.assert(!checkRelationships(s));
+
+console.log('TEST 3 OK');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
 s = dependsOn('b', 'c', s);
 s = areExclusive('a', 'c', s);
 console.assert(!checkRelationships(s));
+
+console.log('TEST 4 OK');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
@@ -34,6 +45,7 @@ s = dependsOn('c', 'a', s);
 s = dependsOn('d', 'e', s);
 s = areExclusive('c', 'e', s);
 console.assert(checkRelationships(s));
+console.log('TEST 5 OK');
 
 // This function takes some arguments and returns a set of selected options.
 // If needed, you should replace it with your own data structure.

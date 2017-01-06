@@ -1,0 +1,50 @@
+
+
+
+STARING TEST
+TEST 1 OK
+TEST 2 OK
+conflict: { opA: 'a', opB: 'b' }
+
+
+checking a and b
+a dependency is  b
+TEST 3 OK
+conflict: { opA: 'a', opB: 'c' }
+
+
+checking a and c
+a dependency is  b
+
+
+checking b and c
+b dependency is  c
+TEST 4 OK
+conflict: { opA: 'c', opB: 'e' }
+
+
+checking c and e
+c dependency is  a
+
+
+checking a and e
+a dependency is  b
+
+
+checking b and e
+b dependency is  c
+
+
+checking c and e
+c dependency is  a
+
+
+checking a and e
+a dependency is  b
+
+
+checking b and e
+b dependency is  c
+
+
+checking c and e

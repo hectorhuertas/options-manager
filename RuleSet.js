@@ -1,6 +1,9 @@
 var RuleSetPrototype = {
   AddDep: function (depends, on) {
     this.dependencies[depends] = on
+  },
+  AddConflict: function (opA, opB) {
+    this.conflicts[opA] = opB
   }
 }
 

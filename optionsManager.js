@@ -8,8 +8,8 @@ function dependsOn(depends, on, ruleset) {
   ruleset.AddDep(depends, on)
 }
 
-function areExclusive() {
-
+function areExclusive(opA, opB, ruleset) {
+  ruleset.AddConflict(opA, opB)
 }
 
 function checkRelationships() {

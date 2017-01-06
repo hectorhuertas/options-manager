@@ -4,6 +4,7 @@ var makeRelationshipSet = optionsManager.makeRelationshipSet
 var dependsOn           = optionsManager.dependsOn
 var areExclusive        = optionsManager.areExclusive
 var checkRelationships  = optionsManager.checkRelationships
+var toggle              = optionsManager.toggle
 
 var s, selected;
 

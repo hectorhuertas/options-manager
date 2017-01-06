@@ -18,9 +18,19 @@ function checkRelationships(ruleset) {
   return ruleset.IsCoherent()
 }
 
+function toggle(selected, toToggle, ruleset) {
+  var isSelecting = !selected[toToggle]
+  selected[toToggle] = !selected[toToggle]
+
+  if (isSelecting) selectDependencies(selected, toToggle, ruleset)
+
+  // var conflicting = ruleset.conflicts.filter((conf)=>{conf.opA === toToggle})
+}
+
 module.exports = {
   makeRelationshipSet: makeRelationshipSet,
   dependsOn: dependsOn,
   areExclusive: areExclusive,
   checkRelationships: checkRelationships,
+  toggle: toggle,
 }

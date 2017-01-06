@@ -22,6 +22,13 @@ var RuleSetPrototype = {
 
     checked.push(dependency)
     return this._IsADependency(dependency, opB, checked)
+  },
+
+  dependenciesOf: function (option) {
+    var dependency = this.dependencies[option]
+
+    if (dependency === undefined) return []
+    
   }
 }
 

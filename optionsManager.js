@@ -22,9 +22,10 @@ function toggle(selected, toToggle, ruleset) {
   var isSelecting = !selected[toToggle]
   selected[toToggle] = !selected[toToggle]
 
-  if (isSelecting) selectDependencies(selected, toToggle, ruleset)
+  // if (isSelecting) selectDependencies(selected, toToggle, ruleset)
 
   // var conflicting = ruleset.conflicts.filter((conf)=>{conf.opA === toToggle})
+  return selected
 }
 
 module.exports = {

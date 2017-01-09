@@ -1,6 +1,9 @@
 var RuleSetPrototype = {
   AddDep: function (depends, on) {
-    this.dependencies[depends] = on
+    this.dependencies[depends] = this.dependencies[depends] || []
+    if (this.dependencies[depends].indexOf(on) === -1 ) {
+      this.dependencies[depends].push(on)
+    }
   },
 
   AddConflict: function (opA, opB) {
@@ -14,21 +17,21 @@ var RuleSetPrototype = {
   },
 
   _IsADependency: function (opA, opB, checked) {
-    var dependency = this.dependencies[opA]
+    var dependenies = this.dependencies[opA]
 
-    if (dependency === undefined) return false
-    if (dependency === opB) return true
-    if (checked.indexOf(dependency) !== -1) return false
+    if (dependenies === undefined) return false
+    if (dependenies.indexOf(opB) !== -1) return true
+    if (checked.indexOf(dependenies) !== -1) return false
 
-    checked.push(dependency)
-    return this._IsADependency(dependency, opB, checked)
+    checked.push(opA)
+    return this._IsADependency(dependenies, opB, checked)
   },
 
   dependenciesOf: function (option) {
     var dependency = this.dependencies[option]
 
     if (dependency === undefined) return []
-    
+
   }
 }
 

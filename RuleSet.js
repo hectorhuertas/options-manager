@@ -4,9 +4,14 @@ var RuleSetPrototype = {
     if (this.dependencies[depends].indexOf(on) === -1 ) {
       this.dependencies[depends].push(on)
     }
+    this.depending[on] = this.depending[on] || []
+    if (this.depending[on].indexOf(depends) === -1 ) {
+      this.depending[on].push(depends)
+    }
   },
 
   AddConflict: function (opA, opB) {
+
     this.conflicts.push({opA: opA, opB: opB})
     this.conflicts.push({opA: opB, opB: opA})
   },
@@ -26,12 +31,19 @@ var RuleSetPrototype = {
 
     checked.push(opA)
     return this._IsADependency(dependenies, opB, checked)
+  },
+  dependenciesOf(key) {
+    return this.dependencies[key] || []
+  },
+  dependingOn(key) {
+    return this.depending[key] || []
   }
 }
 
 function newRuleSet() {
   return Object.assign(Object.create(RuleSetPrototype), {
     dependencies: {},
+    depending: {},
     conflicts: []
   })
 }

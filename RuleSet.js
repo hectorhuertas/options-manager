@@ -19,8 +19,6 @@ var RuleSetPrototype = {
     if (this.conflicts[el2].indexOf(el1) === -1 ) {
       this.conflicts[el2].push(el1)
     }
-    // this.conflicts.push({opA: opA, opB: opB})
-    // this.conflicts.push({opA: opB, opB: opA})
   },
 
   IsCoherent: function () {

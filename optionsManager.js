@@ -38,10 +38,15 @@ function toggle(selected, toToggle, ruleset) {
   return selected
 }
 
+function stringSlice(selected) {
+  return 'Selected options: ' + Object.keys(selected)
+}
+
 module.exports = {
   makeRelationshipSet: makeRelationshipSet,
   dependsOn: dependsOn,
   areExclusive: areExclusive,
   checkRelationships: checkRelationships,
   toggle: toggle,
+  stringSlice: stringSlice
 }

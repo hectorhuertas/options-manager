@@ -5,6 +5,7 @@ var dependsOn           = optionsManager.dependsOn
 var areExclusive        = optionsManager.areExclusive
 var checkRelationships  = optionsManager.checkRelationships
 var toggle              = optionsManager.toggle
+var stringSlice         = optionsManager.stringSlice
 
 var s, selected;
 
@@ -162,3 +163,7 @@ selected = toggle(selected, 'e', s);
 selected = toggle(selected, 'a', s);
 console.assert(setsEqual(selected, set('a', 'c', 'b')));
 console.log('...... OK\n');
+
+
+console.log('Options to String...');
+console.log(stringSlice(selected));

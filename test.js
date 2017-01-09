@@ -100,7 +100,6 @@ console.log('...... OK\n');
 console.log('TEST 8...');
 
 selected = toggle(selected, 'e', s);
-console.log(selected);
 console.assert(setsEqual(selected, set('e', 'f')));
 
 console.log('...... OK\n');
@@ -109,10 +108,23 @@ console.log('TEST 9...');
 selected = toggle(selected, 'b', s);
 console.assert(setsEqual(selected, set('a', 'c', 'b', 'f')));
 
+console.log('...... OK\n');
+console.log('TEST 10...');
+
+
 s = dependsOn('b', 'g', s);
+console.log('RULESET:');
+console.log('Deps: ', s.dependencies);
+console.log('Conf: ', s.conflicts);
+console.log(selected);
 selected = toggle(selected, 'g', s);
+console.log(selected);
 selected = toggle(selected, 'b', s);
+console.log(selected);
 console.assert(setsEqual(selected, set('g', 'f')));
+
+console.log('...... OK\n');
+console.log('TEST 11...');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);

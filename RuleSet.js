@@ -8,6 +8,7 @@ var RuleSetPrototype = {
 
   AddConflict: function (opA, opB) {
     this.conflicts.push({opA: opA, opB: opB})
+    this.conflicts.push({opA: opB, opB: opA})
   },
 
   IsCoherent: function () {

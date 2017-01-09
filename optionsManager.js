@@ -20,24 +20,19 @@ function checkRelationships(ruleset) {
 
 function _modify(selected, toModify, isSelecting, ruleset, checked = []) {
   if (checked.indexOf(toModify) !== -1) return
+  checked.push(toModify)
   if (isSelecting) {
     selected[toModify] = true
+    ruleset.dependenciesOf(toModify).forEach((dep)=>{ _modify(selected, dep, true, ruleset, checked)})
+    ruleset.conflictsOf(toModify).forEach((dep)=>{ _modify(selected, dep, false, ruleset, checked)})
   } else {
     delete selected[toModify]
+    ruleset.dependingOn(toModify).forEach((dep)=>{_modify(selected, dep, false, ruleset, checked)})
   }
-  checked.push(toModify)
-
-  var dependencies = ruleset.dependencies[toModify]
-  if (dependencies) dependencies.forEach((dep) => { _modify(selected, dep, isSelecting, ruleset, checked) })
-
-  var conflicts = ruleset.conflicts.filter((conflict)=>{ return conflict.opA === toModify })
-  if (conflicts) conflicts.forEach((conf) => { _modify(selected, conf.opB, !isSelecting, ruleset, checked) })
-
 }
 
 function toggle(selected, toToggle, ruleset) {
   var isSelecting = !selected[toToggle]
-
   _modify(selected, toToggle, isSelecting, ruleset)
 
   return selected

@@ -84,9 +84,12 @@ function setsEqual(a, b) {
 
 selected = set();  // Or list, array, etc.
 console.log('TEST 6...');
-
-
+// console.log(s.dependenciesOf('a'));
+// console.log(s.dependenciesOf('b'));
+// console.log(s.dependenciesOf('c'));
+console.log(selected);
 selected = toggle(selected, 'a', s);
+console.log(selected);
 console.assert(setsEqual(selected, set('a', 'c', 'b')));
 
 console.log('...... OK\n');
@@ -116,11 +119,8 @@ s = dependsOn('b', 'g', s);
 console.log('RULESET:');
 console.log('Deps: ', s.dependencies);
 console.log('Conf: ', s.conflicts);
-console.log(selected);
 selected = toggle(selected, 'g', s);
-console.log(selected);
 selected = toggle(selected, 'b', s);
-console.log(selected);
 console.assert(setsEqual(selected, set('g', 'f')));
 
 console.log('...... OK\n');
@@ -133,6 +133,9 @@ selected = set();
 selected = toggle(selected, 'c', s);
 console.assert(setsEqual(selected, set('c')));
 
+console.log('...... OK\n');
+console.log('TEST 12...');
+
 // Deep dependencies
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
@@ -143,6 +146,8 @@ s = dependsOn('a', 'f', s);
 s = areExclusive('e', 'f', s);
 console.assert(checkRelationships(s));
 
+console.log('...... OK\n');
+console.log('TEST 12...');
 // Multiple dependencies and exclusions.
 
 s = makeRelationshipSet();
@@ -156,3 +161,4 @@ selected = toggle(selected, 'd', s);
 selected = toggle(selected, 'e', s);
 selected = toggle(selected, 'a', s);
 console.assert(setsEqual(selected, set('a', 'c', 'b')));
+console.log('...... OK\n');

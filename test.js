@@ -9,27 +9,31 @@ var toggle              = optionsManager.toggle
 var s, selected;
 
 console.log('\n\n');
-console.log('STARING TEST');
+console.log('STARING TESTS\n');
+console.log('TEST 1...');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'a', s);
 console.assert(checkRelationships(s));
 
-console.log('TEST 1 OK');
+console.log('...... OK\n');
+console.log('TEST 2...');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
 s = dependsOn('b', 'a', s);
 console.assert(checkRelationships(s));
 
-console.log('TEST 2 OK');
+console.log('...... OK\n');
+console.log('TEST 3...');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
 s = areExclusive('a', 'b', s);
 console.assert(!checkRelationships(s));
 
-console.log('TEST 3 OK');
+console.log('...... OK\n');
+console.log('TEST 4...');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
@@ -37,7 +41,8 @@ s = dependsOn('b', 'c', s);
 s = areExclusive('a', 'c', s);
 console.assert(!checkRelationships(s));
 
-console.log('TEST 4 OK');
+console.log('...... OK\n');
+console.log('TEST 5...');
 
 s = makeRelationshipSet();
 s = dependsOn('a', 'b', s);
@@ -46,8 +51,11 @@ s = dependsOn('c', 'a', s);
 s = dependsOn('d', 'e', s);
 s = areExclusive('c', 'e', s);
 console.assert(checkRelationships(s));
-console.log('TEST 5 OK');
 
+console.log('...... OK\n');
+console.log('RULESET:');
+console.log('Deps: ', s.dependencies);
+console.log('Conf: ', s.conflicts);
 // This function takes some arguments and returns a set of selected options.
 // If needed, you should replace it with your own data structure.
 function set() {
@@ -75,16 +83,28 @@ function setsEqual(a, b) {
 }
 
 selected = set();  // Or list, array, etc.
+console.log('TEST 6...');
+
 
 selected = toggle(selected, 'a', s);
 console.assert(setsEqual(selected, set('a', 'c', 'b')));
+
+console.log('...... OK\n');
+console.log('TEST 7...');
 
 s = dependsOn('f', 'f', s);
 selected = toggle(selected, 'f', s);
 console.assert(setsEqual(selected, set('a', 'c', 'b', 'f')));
 
+console.log('...... OK\n');
+console.log('TEST 8...');
+
 selected = toggle(selected, 'e', s);
+console.log(selected);
 console.assert(setsEqual(selected, set('e', 'f')));
+
+console.log('...... OK\n');
+console.log('TEST 9...');
 
 selected = toggle(selected, 'b', s);
 console.assert(setsEqual(selected, set('a', 'c', 'b', 'f')));

@@ -5,13 +5,11 @@ function makeRelationshipSet() {
 }
 
 function dependsOn(depends, on, ruleset) {
-  ruleset.AddDep(depends, on)
-  return ruleset
+  return ruleset.AddDep(depends, on)
 }
 
 function areExclusive(opA, opB, ruleset) {
-  ruleset.AddConflict(opA, opB)
-  return ruleset
+  return ruleset.AddConflict(opA, opB)
 }
 
 function checkRelationships(ruleset) {
@@ -29,13 +27,13 @@ function _modify(selected, toModify, isSelecting, ruleset, checked = []) {
     delete selected[toModify]
     ruleset.dependingOn(toModify).forEach((dep)=>{_modify(selected, dep, false, ruleset, checked)})
   }
+  return selected
 }
 
 function toggle(selected, toToggle, ruleset) {
   var isSelecting = !selected[toToggle]
-  _modify(selected, toToggle, isSelecting, ruleset)
 
-  return selected
+  return _modify(selected, toToggle, isSelecting, ruleset)
 }
 
 function stringSlice(selected) {
